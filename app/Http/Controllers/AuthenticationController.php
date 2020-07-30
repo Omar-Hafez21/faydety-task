@@ -26,7 +26,6 @@ use LVR\CountryCode\Two;
  *       @OA\Property(property="avatar", type="string", format="base64", example="data:image/jpeg;base64, yourSuperLongStringBinary"),
  *     @OA\Property(property="first_name", type="string", example="ahmed"),
  *     @OA\Property(property="last_name", type="string", example="adel"),
- *     @OA\Property(property="country_code", type="string", example="EG"),
  *     @OA\Property(property="birthdate", type="string", example="+201095222457"),
  *     @OA\Property(property="phone_number", type="string", format="E.164", example="+201095222457"),
  *     @OA\Property(property="country_code", type="string", example="EG"),
@@ -41,6 +40,7 @@ use LVR\CountryCode\Two;
  *     )
  * )
  */
+
 /**
  * @OA\Post(
  * path="/api/signIn",
@@ -82,8 +82,8 @@ class AuthenticationController extends Controller
         $request->validate([
             'first_name' => 'required',
             'last_name' => 'required',
-            'phone_number' => 'Required|phone:AUTO|unique:users|min:10|max:15',
-            'phone_number' => 'numeric',
+            'phone_number' => 'required|phone:AUTO|min:10|max:15',
+            'phone_number' => 'numeric|unique:users',
             'country_code' => ['required', new Two],
             'gender' => [
                 'required',
@@ -95,11 +95,13 @@ class AuthenticationController extends Controller
             'password' => 'required'
         ]);
 
-        $response = PhoneNumber::make('+201095111471')->isOfCountry('EG');
-
-        $response = $this->userService->signUp($request);
-
-        return response()->json([$response],201);
+        $valid_number_in_country = PhoneNumber::make($request->phone_number)->isOfCountry($request->country_code);
+        if($valid_number_in_country){
+            $response = $this->userService->signUp($request);
+            return response()->json([$response],201);
+        }else{
+            return response()->json(['errors' => 'not_exist'],406);
+        }
     }
 
     public function signIn(Request $request){
@@ -113,9 +115,5 @@ class AuthenticationController extends Controller
         return $response;
     }
 
-    public function retrieveUser(Request $request){
-        $response = $this->userService->retrieveUser($request);
-        return $response;
-    }
 }
 

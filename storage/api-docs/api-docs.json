@@ -53,10 +53,6 @@
                                         "type": "string",
                                         "example": "adel"
                                     },
-                                    "country_code": {
-                                        "type": "string",
-                                        "example": "EG"
-                                    },
                                     "birthdate": {
                                         "type": "string",
                                         "example": "+201095222457"
@@ -66,7 +62,7 @@
                                         "format": "E.164",
                                         "example": "+201095222457"
                                     },
-                                    "gender": {
+                                    "country_code": {
                                         "type": "string",
                                         "example": "EG"
                                     }
