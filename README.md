@@ -1,61 +1,55 @@
-<p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
+Task 1
+Develop an end-point that satisfy the following
+Requirement
+Fields:
+Note: Bold Fields are required and the phone number field
+should also be validated against phone number format.
+Responses:
+Example successful Response for a POST request should be as following:
+{ "id": 1, "first_name": "Ali", "last_name": "Gamal", "country_code":
+"EG", "phone_number": "01001234567", "gender": "male", "birthdate":
+"1988-03-29" }
+Failing should be formatted as following:
+{ "errors": { "first_name": [ { "error": "blank" } ], "last_name": [ { "error":
+"blank" } ], "country_code":[ { "error": "inclusion" } ], "phone_number":
+[ { "error": "blank" }, { "error": "not_a_number" }, { "error":
+"not_exist" }, { "error": "invalid" }, { "error": "taken" }, { "error":
+"too_short", "count": 10 }, { "error": "too_long", "count": 15 } ], "gender":
+[ { "error": "inclusion" } ], "birthdate": [ { "error": "blank" },
+{ "error": "in_the_future" } ], "avatar": [ { "error": "blank" }, { "error":
+"invalid_content_type" } ], "email": [{ "error": "taken" }, { "error":
+"invalid" } ] } }
+Note: HTTP status code is 201 if new user else the suitable http status code
+should be returned.
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
 
-## About Laravel
+Task 2
+Create a new end-point to accept password and phone number and
+return unique auth-token along with the response upon success.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Task 3
+Based on Task1 and 2, Develop an end-point that accepts following fields in POST
+request:
+1. phone_number *
+2. auth-token *
+3. status *
+Response:
+1. Successful response should create a status object linked to the user object
+2. Failing request can be either unauthorized request or bad request based on
+auth-token/phone number combinatio
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+REQUIREMENTS -laravel "^7.0" -php "^7.2.5"
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Installation:
+   -run: git clone {put the github link here without braces}
+   -run: composer install
+   -run: php artisan key:generate
+   -run: php artisan migrate
+   -run: php artisan passport:install
+   -run: php artisan serve
+   
+   test with Postman or swagger(http://127.0.0.1:8000/api/docs).
 
-## Learning Laravel
+Postman Documentation
+  https://documenter.getpostman.com/view/5537066/T1Dtfbft
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
-
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[OP.GG](https://op.gg)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
