@@ -9,11 +9,16 @@
     "license": "MIT",
     "require": {
         "php": "^7.2.5",
+        "darkaonline/l5-swagger": "7.*",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^6.3",
+        "laravel-validation-rules/country-codes": "^2.1",
         "laravel/framework": "^7.22.2",
-        "laravel/tinker": "^2.0"
+        "laravel/passport": "^9.3",
+        "laravel/tinker": "^2.0",
+        "mpociot/laravel-apidoc-generator": "^4.8",
+        "propaganistas/laravel-phone": "^4.2"
     },
     "require-dev": {
         "facade/ignition": "^2.0",

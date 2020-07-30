@@ -14,6 +14,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+//Route::middleware('auth:api')->get('/user', function (Request $request) {
+//    return $request->user();
+//});
+
+
+Route::post('registration', 'AuthenticationController@registration');
+Route::post('signIn', 'AuthenticationController@signIn');
+Route::post('createStatus','StatusController@createStatus')->middleware('auth:api');
+
