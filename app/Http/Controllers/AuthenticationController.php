@@ -98,7 +98,7 @@ class AuthenticationController extends Controller
         $valid_number_in_country = PhoneNumber::make($request->phone_number)->isOfCountry($request->country_code);
         if($valid_number_in_country){
             $response = $this->userService->signUp($request);
-            return response()->json([$response],201);
+            return response()->json($response,201);
         }else{
             return response()->json(['errors' => 'not_exist'],406);
         }
